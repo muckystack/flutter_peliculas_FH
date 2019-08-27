@@ -20,9 +20,13 @@ class HomePage extends StatelessWidget {
       ),
       // Este widget sirbe para los dispositivos que tienen noch arriba o donde el dispositivo save que se puede desplegar la aplicación
       body: Container(
-        child: Row(
+        child: ListView(
           children: <Widget>[
-            _swiperTargetas()
+            Column(
+              children: <Widget>[
+                _swiperTargetas()
+              ],
+            ),
           ],
         )
       )
