@@ -25,6 +25,7 @@ class CardSwiper extends StatelessWidget {
           return new FadeInImage(
             image: NetworkImage('url'),
             placeholder: AssetImage('assets/jar-loading.gif'),
+            fit: BoxFit.fill,
           );
         },
         itemCount: 3,
