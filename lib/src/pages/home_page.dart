@@ -35,6 +35,7 @@ class HomePage extends StatelessWidget {
 
   Widget _swiperTargetas() {
     return Container(
+      padding: EdgeInsets.only(top: 10.0),
       width: double.infinity,
       height: 300.0,
       child: Swiper(
