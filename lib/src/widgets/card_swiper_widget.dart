@@ -15,8 +15,8 @@ class CardSwiper extends StatelessWidget {
     // Utilizo mediaQuerys para saver el ancho y alto de todo mi contenedor
     final _screenSize = MediaQuery.of(context).size;
 
-    return AnimatedContainer(
-      duration: Duration(milliseconds: 555),
+    return Container(
+      // duration: Duration(milliseconds: 555),
       height: _screenSize.height * .7,
       // color: Colors.grey,
       child: Swiper(
@@ -36,7 +36,7 @@ class CardSwiper extends StatelessWidget {
             ),
           );
         },
-        itemCount: 3,
+        itemCount: peliculas.length,
         // Indica la cantidad de puntos que ponde debajo de las imagenes
         // pagination: new SwiperPagination(),
         // Indica el cotrol para pasar de una imagen a otra
