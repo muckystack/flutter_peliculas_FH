@@ -23,14 +23,14 @@ class CardSwiper extends StatelessWidget {
         // Nos amontona el contenid en una lista detras de otra
         layout: SwiperLayout.STACK,
         // Indica el ancho que tendran las targeta sdel swiper
-        itemWidth: _screenSize.width * 0.6,
-        itemHeight: _screenSize.height * 0.6,
+        itemWidth: _screenSize.width * 0.7,
+        itemHeight: _screenSize.height * 0.5,
         itemBuilder: (BuildContext context,int index){
           // return new Image.network("http://via.placeholder.com/350x150",fit: BoxFit.fill,);
           return ClipRRect(
             borderRadius: BorderRadius.circular(20.0),
             child: new FadeInImage(
-              image: NetworkImage('url'),
+              image: NetworkImage('https://bs-uploads.toptal.io/blackfish-uploads/blog/post/seo/og_image_file/og_image/15991/top-18-most-common-angularjs-developer-mistakes-41f9ad303a51db70e4a5204e101e7414.png'),
               placeholder: AssetImage('assets/jar-loading.gif'),
               fit: BoxFit.cover,
             ),
