@@ -25,8 +25,10 @@ class HomePage extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                _swiperTargetas()
+                _swiperTargetas(),
+                _footer(context)
               ],
             ),
           ],
@@ -53,5 +55,26 @@ class HomePage extends StatelessWidget {
       },
     );
     
+  }
+
+  Widget _footer(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      child: Column(
+        children: <Widget>[
+          // Le agrego estilos globales
+          Text('Populares', style: Theme.of(context).textTheme.subhead),
+          FutureBuilder(
+            future: PeliculasProvider().getPopulares(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if(snapshot.data) {
+                print(snapshot.data);
+                return Container();
+              }
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
