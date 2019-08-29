@@ -34,7 +34,7 @@ class MovieHorizontal extends StatelessWidget {
               borderRadius: BorderRadius.circular(20.0),
               child: FadeInImage(
                 image: NetworkImage(pelicula.getPosterImg()),
-                placeholder: AssetImage('assets/jar-loading.gif'),
+                placeholder: AssetImage('assets/loading.gif'),
                 fit: BoxFit.cover,
                 height: 160.0,
               ),

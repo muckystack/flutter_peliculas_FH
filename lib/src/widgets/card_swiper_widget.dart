@@ -32,7 +32,7 @@ class CardSwiper extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.0),
             child: new FadeInImage(
               image: NetworkImage(peliculas[index].getPosterImg()),
-              placeholder: AssetImage('assets/jar-loading.gif'),
+              placeholder: AssetImage('assets/loading.gif'),
               fit: BoxFit.cover,
             ),
           );
