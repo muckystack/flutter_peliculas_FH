@@ -15,6 +15,8 @@ class PeliculasProvider {
   // Variable para manejar la paginación
   int _popularesPage = 0;
 
+  bool _cargando = false;
+
 
   List<Pelicula> _populares = List();
 
@@ -69,6 +71,10 @@ class PeliculasProvider {
   // Defino un metodo para hacer la petición GET a la API
   Future<List<Pelicula>> getPopulares() async {
 
+    if(_cargando) return [];
+
+    _cargando = true;
+
     // Sumo un 1 a la variable
     _popularesPage++;
 
@@ -83,6 +89,8 @@ class PeliculasProvider {
 
     _populares.addAll(resp);
     popularesSink(_populares);
+
+    _cargando = false;
 
     return resp;
 
