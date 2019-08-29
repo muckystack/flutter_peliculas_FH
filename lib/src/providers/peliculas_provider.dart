@@ -23,6 +23,12 @@ class PeliculasProvider {
   // Stream que tiene barios clientes
   final _popularesStream = StreamController<List<Pelicula>>.broadcast();
 
+  // Get para insertar información al stream
+  Function(List<Pelicula>) get popularesSink => _popularesStream.sink.add;
+
+  // Get para escuchar información del stream
+  Stream<List<Pelicula>> get popularesStream => _popularesStream.stream;
+
   // Función obligatoria para cerrar el StreamController
   void disposeStream() {
     // El signo de interrogación es para saver si se esta ejecutando el close o no
