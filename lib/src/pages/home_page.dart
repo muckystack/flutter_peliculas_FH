@@ -68,8 +68,8 @@ class HomePage extends StatelessWidget {
             child: Text('Populares', style: Theme.of(context).textTheme.subhead)
           ),
           SizedBox(height: 10.0,),
-          FutureBuilder(
-            future: PeliculasProvider().getPopulares(),
+          StreamBuilder(
+            stream: peliculasProvider.popularesStream,
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if(snapshot.hasData) {
                 return MovieHorizontal(peliculas: snapshot.data);

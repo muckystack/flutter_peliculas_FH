@@ -19,20 +19,20 @@ class PeliculasProvider {
   List<Pelicula> _populares = List();
 
   // Stream que solo escucha un cliente
-  // final _popularesStream = StreamController<List<Pelicula>>();
+  // final _popularesStreamController = StreamController<List<Pelicula>>();
   // Stream que tiene barios clientes
-  final _popularesStream = StreamController<List<Pelicula>>.broadcast();
+  final _popularesStreamController = StreamController<List<Pelicula>>.broadcast();
 
   // Get para insertar información al stream
-  Function(List<Pelicula>) get popularesSink => _popularesStream.sink.add;
+  Function(List<Pelicula>) get popularesSink => _popularesStreamController.sink.add;
 
   // Get para escuchar información del stream
-  Stream<List<Pelicula>> get popularesStream => _popularesStream.stream;
+  Stream<List<Pelicula>> get popularesStream => _popularesStreamController.stream;
 
   // Función obligatoria para cerrar el StreamController
   void disposeStream() {
     // El signo de interrogación es para saver si se esta ejecutando el close o no
-    _popularesStream?.close();
+    _popularesStreamController?.close();
   }
 
 
@@ -79,7 +79,12 @@ class PeliculasProvider {
       'page'      : _popularesPage.toString()
     });
 
-    return await _procesarRespuesta(url);
+    final resp = await _procesarRespuesta(url);
+
+    _populares.addAll(resp);
+    popularesSink(_populares);
+
+    return resp;
 
   }
 
