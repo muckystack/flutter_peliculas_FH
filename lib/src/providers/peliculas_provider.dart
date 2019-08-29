@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 // Importo la libreria http
@@ -13,6 +14,21 @@ class PeliculasProvider {
 
   // Variable para manejar la paginación
   int _popularesPage = 0;
+
+
+  List<Pelicula> _populares = List();
+
+  // Stream que solo escucha un cliente
+  // final _popularesStream = StreamController<List<Pelicula>>();
+  // Stream que tiene barios clientes
+  final _popularesStream = StreamController<List<Pelicula>>.broadcast();
+
+  // Función obligatoria para cerrar el StreamController
+  void disposeStream() {
+    // El signo de interrogación es para saver si se esta ejecutando el close o no
+    _popularesStream?.close();
+  }
+
 
   Future<List<Pelicula>> _procesarRespuesta(Uri url) async {
     // Mando la petición por GET a la url
@@ -47,6 +63,7 @@ class PeliculasProvider {
   // Defino un metodo para hacer la petición GET a la API
   Future<List<Pelicula>> getPopulares() async {
 
+    // Sumo un 1 a la variable
     _popularesPage++;
 
     // Utilizando http concateno la url a la que se le va ha hacer la petición conlas variables
