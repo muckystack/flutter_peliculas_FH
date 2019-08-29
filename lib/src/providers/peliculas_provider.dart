@@ -11,15 +11,7 @@ class PeliculasProvider {
   String _url       = 'api.themoviedb.org';
   String _languaje  = 'es-ES';
 
-  // Defino un metodo para hacer la petición GET a la API
-  Future<List<Pelicula>> getEnCines() async {
-
-    // Utilizando http concateno la url a la que se le va ha hacer la petición conlas variables
-    final url = Uri.https(_url, '3/movie/now_playing', {
-      'api_key'   : _apikey,
-      'language'  : _languaje
-    });
-
+  Future<List<Pelicula>> _procesarRespuesta(Uri url) async {
     // Mando la petición por GET a la url
     final resp = await http.get(url);
     // Tomo la respuesta en string plano y la combierto a JSON
@@ -34,6 +26,18 @@ class PeliculasProvider {
 
     // Retorno la lista o Json de peliculas
     return peliculas.items;
+  }
+
+  // Defino un metodo para hacer la petición GET a la API
+  Future<List<Pelicula>> getEnCines() async {
+
+    // Utilizando http concateno la url a la que se le va ha hacer la petición conlas variables
+    final url = Uri.https(_url, '3/movie/now_playing', {
+      'api_key'   : _apikey,
+      'language'  : _languaje
+    });
+
+    return await _procesarRespuesta(url);
 
   }
 
@@ -46,16 +50,7 @@ class PeliculasProvider {
       'language'  : _languaje
     });
 
-    // Mando la petición por GET a la url
-    final resp = await http.get(url);
-    // Tomo la respuesta en string plano y la combierto a JSON
-    final decodedData = json.decode(resp.body);
-
-    // Mando llamar a mi Modelo donde lo parseara a un Json de peliculas
-    final peliculas = new Peliculas.fromJsonList(decodedData['results']);
-
-    // Retorno la lista o Json de peliculas
-    return peliculas.items;
+    return await _procesarRespuesta(url);
 
   }
 
