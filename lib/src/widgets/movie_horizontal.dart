@@ -24,10 +24,40 @@ class MovieHorizontal extends StatelessWidget {
 
     return Container(
       height: 180.0,
-      child: PageView(
-        children: _targetas(context),
+      child: PageView.builder(
+        // children: _targetas(context),
+        itemCount: peliculas.length,
+        itemBuilder: (context, i) {
+          return _targeta(context, peliculas[i]);
+        },
         pageSnapping: false,
         controller: _pageController
+      ),
+    );
+  }
+
+  Widget _targeta(BuildContext context, Pelicula pelicula) {
+    return Container(
+      margin: EdgeInsets.only(right: 15.0),
+      child: Column(
+        children: <Widget>[
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20.0),
+            child: FadeInImage(
+              image: NetworkImage(pelicula.getPosterImg()),
+              placeholder: AssetImage('assets/loading.gif'),
+              fit: BoxFit.cover,
+              height: 160.0,
+            ),
+          ),
+          SizedBox(height: 5.0,),
+          Text(
+            pelicula.title,
+            // Esta propiedad poe 3 puntos al final del texto cuando ya no cabe en su contenedor
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.caption,
+          )
+        ],
       ),
     );
   }
