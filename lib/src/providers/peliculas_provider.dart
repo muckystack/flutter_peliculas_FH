@@ -11,6 +11,9 @@ class PeliculasProvider {
   String _url       = 'api.themoviedb.org';
   String _languaje  = 'es-ES';
 
+  // Variable para manejar la paginación
+  int _popularesPage = 0;
+
   Future<List<Pelicula>> _procesarRespuesta(Uri url) async {
     // Mando la petición por GET a la url
     final resp = await http.get(url);
@@ -44,10 +47,13 @@ class PeliculasProvider {
   // Defino un metodo para hacer la petición GET a la API
   Future<List<Pelicula>> getPopulares() async {
 
+    _popularesPage++;
+
     // Utilizando http concateno la url a la que se le va ha hacer la petición conlas variables
     final url = Uri.https(_url, '3/movie/popular', {
       'api_key'   : _apikey,
-      'language'  : _languaje
+      'language'  : _languaje,
+      'page'      : _popularesPage.toString()
     });
 
     return await _procesarRespuesta(url);
