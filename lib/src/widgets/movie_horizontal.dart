@@ -27,9 +27,7 @@ class MovieHorizontal extends StatelessWidget {
       child: PageView.builder(
         // children: _targetas(context),
         itemCount: peliculas.length,
-        itemBuilder: (context, i) {
-          return _targeta(context, peliculas[i]);
-        },
+        itemBuilder: (context, i) => _targeta(context, peliculas[i]),
         pageSnapping: false,
         controller: _pageController
       ),
