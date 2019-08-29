@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
       future: peliculasProvider.getEnCines(),
       builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
         if(snapshot.hasData) {
-          return CardSwiper(peliculas: [1,2]);
+          return CardSwiper(peliculas: snapshot.data);
         }else {
           return Container(
             height: 300.0,

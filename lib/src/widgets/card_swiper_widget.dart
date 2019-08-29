@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_peliculas_fh/src/models/pelicula_model.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class CardSwiper extends StatelessWidget {
 
   // Variables y contantes
-  final List<dynamic> peliculas;
+  final List<Pelicula> peliculas;
 
   // Defino el contructor de nuevo widget, '@required' es para decir que el parametro es requerido y si no nocunfuona
   CardSwiper({@required this.peliculas});
@@ -30,7 +31,7 @@ class CardSwiper extends StatelessWidget {
           return ClipRRect(
             borderRadius: BorderRadius.circular(20.0),
             child: new FadeInImage(
-              image: NetworkImage('https://bs-uploads.toptal.io/blackfish-uploads/blog/post/seo/og_image_file/og_image/15991/top-18-most-common-angularjs-developer-mistakes-41f9ad303a51db70e4a5204e101e7414.png'),
+              image: NetworkImage(peliculas[index].getPosterImg()),
               placeholder: AssetImage('assets/jar-loading.gif'),
               fit: BoxFit.cover,
             ),
