@@ -9,6 +9,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // Mando llamar mi metodo para cargar las películas
+    peliculasProvider.getPopulares();
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
