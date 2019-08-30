@@ -89,4 +89,14 @@ class Pelicula {
     }
 
   }
+
+  getBackgroundImg() {
+
+    if(posterPath == null) {
+      return 'http://icons.iconarchive.com/icons/tristan-edwards/sevenesque/1024/Preview-icon.png';
+    }else {
+      return 'https://image.tmdb.org/t/p/w500/$backdropPath';
+    }
+
+  }
 }
