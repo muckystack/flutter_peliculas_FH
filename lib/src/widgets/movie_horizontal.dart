@@ -35,7 +35,9 @@ class MovieHorizontal extends StatelessWidget {
   }
 
   Widget _targeta(BuildContext context, Pelicula pelicula) {
-    return Container(
+
+
+    final tarjeta = Container(
       margin: EdgeInsets.only(right: 15.0),
       child: Column(
         children: <Widget>[
@@ -58,6 +60,16 @@ class MovieHorizontal extends StatelessWidget {
         ],
       ),
     );
+
+    // Este widget recopila todos los eventos que se ejecuten en el widget hijo
+    return GestureDetector(
+      onTap: () {
+        // Paso argumentos por el nombre de la ruta
+        Navigator.pushNamed(context, 'detalle', arguments: pelicula);
+      },
+      child: tarjeta,
+    );
+
   }
 
   List<Widget> _targetas(BuildContext context) {
