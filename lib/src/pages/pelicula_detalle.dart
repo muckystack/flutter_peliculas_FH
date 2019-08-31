@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_peliculas_fh/src/models/actores_model.dart';
 import 'package:flutter_peliculas_fh/src/models/pelicula_model.dart';
+import 'package:flutter_peliculas_fh/src/providers/peliculas_provider.dart';
 
 class PeliculaDetalle extends StatelessWidget {
   const PeliculaDetalle({Key key}) : super(key: key);
@@ -23,6 +25,7 @@ class PeliculaDetalle extends StatelessWidget {
                 _descripcion(pelicula),
                 _descripcion(pelicula),
                 _descripcion(pelicula),
+                _crearCasting(pelicula)
               ]
             ),
           )
@@ -101,5 +104,53 @@ class PeliculaDetalle extends StatelessWidget {
       ),
     );
 
+  }
+
+  Widget _crearCasting(Pelicula pelicula) {
+    final peliProvider = PeliculasProvider();
+
+    return FutureBuilder(
+      future: peliProvider.getCast(pelicula.id.toString()),
+      builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+        if(snapshot.hasData) {
+          return _crearActoresPageView(snapshot.data);
+        }else {
+          return Center(child: CircularProgressIndicator());
+        }
+      },
+    );
+  }
+
+  Widget _crearActoresPageView(List<Actor> actores) {
+    return SizedBox(
+      height: 200.0,
+      child: PageView.builder(
+        itemCount: actores.length,
+        controller: PageController(
+          viewportFraction: 0.4,
+          initialPage: 1,
+        ),
+        pageSnapping: false,
+        itemBuilder: (context, i) => _actorTargeta(actores[i]),
+      )
+    );
+  }
+
+  Widget _actorTargeta(Actor actor) {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20.0),
+            child: FadeInImage(
+              image: NetworkImage(actor.getFoto()),
+              placeholder: AssetImage('loading-actor.gif'),
+              height: 150.0,
+              fit: BoxFit.cover
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
