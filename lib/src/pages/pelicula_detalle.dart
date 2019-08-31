@@ -127,7 +127,7 @@ class PeliculaDetalle extends StatelessWidget {
       child: PageView.builder(
         itemCount: actores.length,
         controller: PageController(
-          viewportFraction: 0.4,
+          viewportFraction: 0.3,
           initialPage: 1,
         ),
         pageSnapping: false,
@@ -148,6 +148,10 @@ class PeliculaDetalle extends StatelessWidget {
               height: 150.0,
               fit: BoxFit.cover
             ),
+          ),
+          Text(
+            actor.name,
+            overflow: TextOverflow.ellipsis
           )
         ],
       ),
