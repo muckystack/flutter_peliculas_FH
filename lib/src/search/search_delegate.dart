@@ -6,28 +6,45 @@ class DataSearch extends SearchDelegate {
   @override
   List<Widget> buildActions(BuildContext context) {
     // TODO: implement buildActions
-    return null;
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          // En esta variable se almacena lo que se escribe en el input de search
+          query = '';
+        },
+      ),
+    ];
   }
 
   // Icono a la izquierda del appBar
   @override
   Widget buildLeading(BuildContext context) {
     // TODO: implement buildLeading
-    return null;
+    return IconButton(
+      icon: AnimatedIcon(
+        icon: AnimatedIcons.menu_arrow,
+        progress: transitionAnimation,
+      ),
+      onPressed: () {
+        // print('Leading Icons Press');
+        close(context, null);
+      },
+    );
   }
 
   // Es el Builder o la estruccion que crean los resultados que se van a mostrar
   @override
   Widget buildResults(BuildContext context) {
     // TODO: implement buildResults
-    return null;
+    return Container();
   }
 
   // Son las sugerencias que aparecen cuando la person a escribe
   @override
   Widget buildSuggestions(BuildContext context) {
     // TODO: implement buildSuggestions
-    return null;
+    return Container();
   }
 
 }
