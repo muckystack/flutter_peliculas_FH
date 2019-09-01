@@ -112,4 +112,19 @@ class PeliculasProvider {
     return cast.actores;
   }
 
+
+  // Defino un metodo para hacer la petición GET a la API
+  Future<List<Pelicula>> buscarPelicula(String query) async {
+
+    // Utilizando http concateno la url a la que se le va ha hacer la petición conlas variables
+    final url = Uri.https(_url, '3/search/movie', {
+      'api_key'   : _apikey,
+      'language'  : _languaje,
+      'query'     : query
+    });
+
+    return await _procesarRespuesta(url);
+
+  }
+
 }
