@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class DataSearch extends SearchDelegate {
 
+  String seleccion = '';
+
 
   final peliculas = [
     'Pelicula 1',
@@ -47,7 +49,14 @@ class DataSearch extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     // TODO: implement buildResults
-    return Container();
+    return Center(
+      child: Container(
+        height: 100.0,
+        width: 100.0,
+        color: Colors.amberAccent,
+        child: Text(seleccion),
+      ),
+    );
   }
 
   // Son las sugerencias que aparecen cuando la person a escribe
@@ -68,6 +77,10 @@ class DataSearch extends SearchDelegate {
       return ListTile(
         leading: Icon(Icons.movie),
         title: Text(listaSugerida[index]),
+        onTap: () {
+          seleccion = listaSugerida[index];
+          showResults(context);
+        },
       );
      },
     );
